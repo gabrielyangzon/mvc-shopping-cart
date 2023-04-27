@@ -1,0 +1,21 @@
+﻿@using (Html.BeginForm("Index", "Home"))
+{
+    <div class="container mb-2">
+        <div class="row">
+            <select id="selectBrand"
+                name="filterBrand"
+                    class="form-select w-25"
+                asp-items="@ViewBag.Brands"></select>
+
+            <button hidden id="submitBrand" class="btn btn-info" type="submit">Filter</button>
+
+            <h4 class="w-50">Showing: <b id="selectedBrand">@ViewBag.SelectedBrand</b>(<b>@ViewBag.productCount</b>)</h4>
+        </div>
+    </div>
+}
+
+
+
+
+
+

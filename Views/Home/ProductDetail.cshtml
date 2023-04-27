@@ -1,0 +1,29 @@
+﻿@model mvc_products.Models.Product
+
+@{
+    ViewData["Title"] = "Product Detail";
+}
+
+
+
+
+<a class="btn btn-info" asp-action="Index" asp-controller="Home">Back</a>
+<h5 class="modal-title" id="modalProductTitle">@Model.Title</h5>
+
+
+<div class="modal-body">
+    <div class="card">
+        <div id="modalProductImage" class="card-img" style="background-image: url(@Model.Thumbnail)">
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="card-text" id="modalProductDesciption">@Model.Description</p>
+    </div>
+    <button class="btn btn-secondary btnAddToCart">Add to cart</button>
+    <input hidden type="text" class="productId" value="@Model.Id" />
+</div>
+
+
+
+
+

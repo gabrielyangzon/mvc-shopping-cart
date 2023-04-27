@@ -1,0 +1,30 @@
+﻿<div class="d-flex flex-wrap justify-content-md-between">
+
+    @foreach (Product product in Model)
+    {
+        <div class="card mb-3">
+            @*<div class="card-img" style="background-image: url('@product.Thumbnail');">
+        </div>*@
+            <div class="card-body">
+                <h5 class="card-title">@product.Title</h5>
+            </div>
+            <div class="card-footer d-flex justify-content-lg-between align-items-center">
+                <small class="text-muted">
+                    <a class="btn btn-primary"
+                   asp-action="ProductDetail"
+                   asp-controller="Home"
+                   asp-route-id=@product.Id>
+                        More info
+                    </a>
+
+
+                </small>
+                @*<a class="btn btn-primary" asp-action="AddToCart" asp-controller="Home">Add to cart</a>*@
+                <button onclick="addToCartClicked(@product.Id)" class="btn btn-secondary">Add to cart</button>
+                <input hidden type="text" class="productId" value="@product.Id" />
+                <span class="float-right"><b>$@product.Price</b></span>
+
+            </div>
+        </div>
+    }
+</div>

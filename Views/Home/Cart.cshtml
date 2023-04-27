@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+@model List<Cart>;
+<h1>Cart</h1>
+
+
+@if (Model.Count != 0)
+{
+
+    @foreach (var cartItems in Model)
+    {
+        <div class="card mb-1">
+            <div class="card-body">
+                <p hidden>@cartItems.Id</p>
+                <p hidden>@cartItems.ItemId</p>
+                <p>Item name: @cartItems.ItemName</p>
+                <p>Quantity : @cartItems.Quantity</p>
+                <p>Unit Price : @cartItems.UnitPrice</p>
+
+                <p>Total Price : @cartItems.TotalPrice</p>
+            </div>
+        </div>
+    }
+
+    <button class="btn btn-info">Check out</button>
+}
+else
+{
+    <h5>No Items in the cart</h5>
+}
+
+
+
