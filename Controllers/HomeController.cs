@@ -70,7 +70,8 @@ namespace mvc_products.Controllers
         public ActionResult Cart()
         {
             var cartItems = HttpContext.Session.GetObjectFromJson<List<Cart>>("cartItems");
-            return View(cartItems);
+
+            return View();
         }
 
         public JsonResult AddToCart(int itemId)
@@ -99,12 +100,12 @@ namespace mvc_products.Controllers
                     ItemId = product.Id,
                     Quantity = 1,
                     UnitPrice = product.Price,
-
+                    Thumbnail = product.Thumbnail,
                 });
             }
 
             HttpContext.Session.SetObjectAsJson("cartItems", currentCartItems);
-
+            HttpContext.Session.SetInt32("cartCount", currentCartItems.Count);
             return Json(new { status = 200, total = currentCartItems.Count });
         }
 
@@ -118,9 +119,36 @@ namespace mvc_products.Controllers
             return View(product);
         }
 
+
+        public ActionResult ChangeCartQuantity(int itemCartId,  int quantity)
+        {
+            var currentCartItems = HttpContext.Session.GetObjectFromJson<List<Cart>>("cartItems");
+
+            Cart cartItem = currentCartItems.FirstOrDefault(c => c.Id == itemCartId);
+
+
+            if (cartItem != null)
+            {
+                currentCartItems.FirstOrDefault(x => x.Id == itemCartId).Quantity = quantity;
+            }
+
+            HttpContext.Session.SetObjectAsJson("cartItems", currentCartItems);
+
+            return Json(new { status = 200 });
+         
+        }
+
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult CartItem()
+        {
+
+            var cartItems = HttpContext.Session.GetObjectFromJson<List<Cart>>("cartItems");
+
+            return PartialView("partial/_CartItems", cartItems);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

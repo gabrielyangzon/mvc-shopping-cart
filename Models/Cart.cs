@@ -10,7 +10,7 @@
 
         public double UnitPrice { get; set; } = 0;
 
-
+        public string Thumbnail { get; set; }
         public double TotalPrice
         {
             get { return Quantity * UnitPrice; }

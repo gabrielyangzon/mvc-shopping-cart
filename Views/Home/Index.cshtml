@@ -24,44 +24,11 @@
 
                 $("#submitBrand").click()
             })
-
-
-            //$(".btnAddToCart").on("click", function (e) {
-            //    e.preventDefault()
-
-
-
-            //    $.ajax({
-            //        type: "post",
-            //        url: "Home/AddToCart",
-
-            //        success: function (data) {
-
-
-            //            if (data.status === 200) {
-
-            //                $("#cartCount").text(data.total)
-
-            //                Swal.fire({
-            //                    position: 'top-end',
-            //                    icon: 'success',
-            //                    title: 'Item added to cart',
-            //                    showConfirmButton: false,
-            //                    timer: 1500
-            //                })
-            //            }
-            //        },
-            //        error: function () {
-            //            console.log("error")
-            //        }
-            //    });
-            //})
-
-
-
         })
 
         function addToCartClicked(itemId) {
+
+           
 
             $.ajax({
                 type: "post",
